@@ -7,7 +7,7 @@ const Repair = db.define('repairs', {
     primaryKey: true,
     autoIncrement: true,
     allowNull: false,
-  },  
+  },
   date: {
     type: DataTypes.DATE,
     allowNull: false,

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const app = require('./app.js');
 const { db } = require('./database/config.js');
-const initModel = require('./models/initModels.js')
+const initModel = require('./models/initModels.js');
 //console.log('Hello from Taller de motos app')
 
 //authentication
@@ -14,7 +14,7 @@ db.authenticate()
   });
 
 // inicializacion de las relaciones del modelo
-initModel();  
+initModel();
 
 //synchronization
 db.sync()

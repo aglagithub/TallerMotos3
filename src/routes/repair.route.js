@@ -15,7 +15,7 @@ router.use(authMiddleware.protect); //Se protegen todas las rutas
 //router.use(authMiddleware.restricTo('employee'));
 router
   .route('/')
-  .get(authMiddleware.restrictTo('employee'),repairController.findAllRepairs)
+  .get(authMiddleware.restrictTo('employee'), repairController.findAllRepairs)
   .post(
     validationMiddleware.createRepairValidation,
     repairController.createRepair

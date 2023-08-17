@@ -11,12 +11,13 @@ exports.findAllRepairs = async (req, res) => {
       include: [
         {
           model: User,
-          attributes:['name', 'email']
+          attributes: ['name', 'email'],
         },
       ],
     });
     return res.status(200).json({
       status: 'success',
+      NumRepairs: repairs.length,
       repairs,
     });
   } catch (error) {
@@ -34,7 +35,7 @@ exports.findAllRepairs = async (req, res) => {
 exports.findOneRepair = async (req, res) => {
   try {
     const { repair } = req;
-  
+    console.log("repair",repair)
 
     return res.status(200).json({
       status: 'success',
@@ -75,7 +76,7 @@ exports.createRepair = async (req, res) => {
 exports.updateRepair = async (req, res) => {
   try {
     const { repair } = req;
-    console.log('update repair req:', req);
+    //console.log('update repair req:', req);
     await repair.update({ status: 'completed' });
 
     return res.status(200).json({

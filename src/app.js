@@ -14,8 +14,6 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('dev'));
 
-
-
 //routes
 const userRoutes = require('./routes/user.route');
 const repairRoutes = require('./routes/repair.route');
@@ -25,10 +23,12 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/repairs', repairRoutes);
 
 app.all('*', (req, res, next) => {
-    return next(new AppError(`!Can´t find ${req.originalUrl} on This server!`, 404));
+  return next(
+    new AppError(`!Can´t find ${req.originalUrl} on This server!`, 404)
+  );
 });
 
 //Middleware para manejo centralizado de errores
-app.use(globalErrorHandler)
+app.use(globalErrorHandler);
 
 module.exports = app;

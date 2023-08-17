@@ -19,7 +19,7 @@ exports.protect = async (req, res, next) => {
       return res.status(401).json({
         status: 'error',
         message: 'You are not logged in! Please log in to get access',
-      }); 
+      });
     }
 
     //console.log('token almacenado:', token)
@@ -29,7 +29,6 @@ exports.protect = async (req, res, next) => {
       token,
       process.env.SECRET_JWT_SEED
     );
-
 
     //console.log('decoded:', decoded);
 
@@ -59,20 +58,21 @@ exports.protect = async (req, res, next) => {
 
 //verificación de rol.
 exports.restrictTo = (...roles) => {
-  
   return (req, res, next) => {
     //console.log("roles:",roles);
     //console.log("req.sessionUser.role:",req.sessionUser.role);
     if (!roles.includes(req.sessionUser.role)) {
       return next(
-        new AppError(`You do not have permission to perfom this action.! Yor role is ${req.sessionUser.role}`, 403)
+        new AppError(
+          `You do not have permission to perfom this action.! Yor role is ${req.sessionUser.role}`,
+          403
+        )
       );
     }
 
     next();
   };
 };
-
 
 //Proteccion de la cuenta de usuario (pend implentation)
 exports.protectAccountOwmer = (req, res, next) => {
@@ -98,4 +98,3 @@ exports.protectAccountOwmer = (req, res, next) => {
 
   next();
 };
-
